@@ -1,8 +1,12 @@
 {
   "name": "save-graphql-schema",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bin": {
     "save-graphql-schema": "./bin/save-graphql-schema.js"
+  },
+  "repository" :
+      { "type" : "git"
+      , "url" : "https://github.com/cbranch101/save-graphql-schema"
   },
   "dependencies": {
     "chalk": "^2.1.0",
