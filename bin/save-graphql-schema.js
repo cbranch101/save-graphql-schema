@@ -30,6 +30,7 @@ if (url === "get-schema") url = null
 
 const saveJson = argv.json === true
 const saveDir = argv.dir || ""
+const saveJS = arv.js === true
 
 if (!url) {
     console.log(
@@ -67,8 +68,10 @@ fetch(url, {
             fs.writeFileSync(saveDir + "schema.json", jsonString)
         }
         const schemaString = printSchema(buildClientSchema(res.data))
-        fs.writeFileSync(saveDir + "schema.graphql", schemaString)
-        console.log("schema.graphql has downloaded and saved")
+        const savedString = saveJS ? `export default '${schemaString}'` : schemaString
+        const fileName = saveJS ? 'schema-graphql.js' : "schema.graphql"
+        fs.writeFileSync(saveDir + fileName, savedString)
+        console.log(`${fileName} has downloaded and saved`)
     })
     .catch(e => {
         console.log(chalk.red("\nError:"))
