@@ -30,7 +30,7 @@ if (url === "get-schema") url = null
 
 const saveJson = argv.json === true
 const saveDir = argv.dir || ""
-const saveJS = arv.js === true
+const saveJS = argv.js === true
 
 if (!url) {
     console.log(
