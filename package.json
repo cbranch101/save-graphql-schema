@@ -1,6 +1,6 @@
 {
   "name": "save-graphql-schema",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "bin": {
     "save-graphql-schema": "./bin/save-graphql-schema.js"
   },

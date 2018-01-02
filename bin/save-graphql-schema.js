@@ -29,6 +29,7 @@ argv._.forEach(command => {
 if (url === "get-schema") url = null
 
 const saveJson = argv.json === true
+const saveDir = argv.dir || ""
 
 if (!url) {
     console.log(
@@ -60,14 +61,14 @@ fetch(url, {
 })
     .then(res => res.json())
     .then(res => {
-        console.log("schema.graphql has downloaded and saved")
         if (saveJson) {
             const jsonString = JSON.stringify(res.data)
             console.log("schema.json has been saved")
-            fs.writeFileSync("schema.json", jsonString)
+            fs.writeFileSync(saveDir + "schema.json", jsonString)
         }
         const schemaString = printSchema(buildClientSchema(res.data))
-        fs.writeFileSync("schema.graphql", schemaString)
+        fs.writeFileSync(saveDir + "schema.graphql", schemaString)
+        console.log("schema.graphql has downloaded and saved")
     })
     .catch(e => {
         console.log(chalk.red("\nError:"))
